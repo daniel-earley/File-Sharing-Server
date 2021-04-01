@@ -1,0 +1,27 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<GridPane fx:controller="sample.Controller"
+          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="5" vgap="5">
+
+    <GridPane alignment="TOP_LEFT" GridPane.columnIndex="0" GridPane.rowIndex="0">
+        <Button fx:id="Upload" text="Upload" GridPane.rowIndex="0" GridPane.columnIndex="0" prefWidth="80" onAction="#uploadHandler"/>
+        <Button fx:id="Download" text="Download" GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="90" onAction="#downloadHandler"/>
+    </GridPane>
+
+    <GridPane alignment="TOP_RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="0" >
+        <Button fx:id="UploadAll" text="Upload All"  GridPane.rowIndex="0" GridPane.columnIndex="2" prefWidth="100" onAction="#uploadAllHandler"/>
+        <Button fx:id="DownloadAll" text="Download All" GridPane.rowIndex="0" GridPane.columnIndex="3" prefWidth="110" onAction="#downloadAllHandler"/>
+    </GridPane>
+
+    <Label fx:id="serverLabel" text="Server" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+    <Label fx:id="clientLabel" text="Client" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+
+    <ListView GridPane.rowIndex="2" GridPane.columnIndex="0" fx:id="clientSide" />
+    <ListView GridPane.rowIndex="2" GridPane.columnIndex="1" fx:id="serverSide" />
+
+</GridPane>
