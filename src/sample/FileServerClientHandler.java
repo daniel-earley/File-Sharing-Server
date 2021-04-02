@@ -26,39 +26,7 @@ public class FileServerClientHandler implements Runnable{
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        try {
-//            fileTransfer(socket);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
 
-    public void fileTransfer(Socket socket) throws IOException{
-        // copy file contents into another file
-        Writer writer = null;
-        try {
-//            FileReader fileInput = new FileReader(file);
-            var input = new BufferedInputStream(socket.getInputStream());
-//            writer = new BufferedWriter(new FileWriter(fileCopy));
-            var output = new FileOutputStream("./resources/server/");
-            String line;
-            byte[] buffer = new byte[4096];
-            int count;
-            while((count = input.read(buffer)) > 0){
-                output.write(buffer, 0, count);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            writer.flush();
-            writer.close();
-        }
-    }
-
-//    public void fileTransfer(Socket socket){
-//        DataInputStream inStream = new DataInputStream(socket.getInputStream());
-//        FileOutputStream outStream = new FileOutputStream()
-//    }
 
 }
