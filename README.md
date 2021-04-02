@@ -34,7 +34,30 @@ folder to the server, or download files from the server to the shared folder.
    
 3) Type into the terminal: git clone https://github.com/daniel-earley/File-Sharing-Server.git
 
-4) 
+4) Next, for the easiest way to run the program use an IDE of your choice, 
+   (this project was written in IntelliJ).
+   
+5) Next in the IDE open the folder called **File-Sharing-Server**, and navigate 
+   to ./src/sample/
+   
+6) From here run the FileServer.java file by either opening it and hitting (when in IntelliJ) 
+   **ctrl + shift + f10** or by right clicking the file and selecting **Run**
+   
+7) If you want to use command line arguments while running the main class then open the Main.java 
+   file and open the configurations drop down menu (Fig 2.1),from here select **Main** and then select 
+   **edit configurations**. From here there will be a text box that will allow you to enter command line 
+   arguments (Fig 2.2)
+   
+8) Once you are comfortable with or without command line arguments, run the Main.java file the same way
+you ran the FileServer.java file.
+   
+- Fig 2.1
+
+![Alt Text](./resources/Edit%20Configurations%20Menu.png)
+
+- Fig 2.2
+
+![Alt Text](./resources/Edit%20Configurations.png)
 
 ### Libraries and Java Version ###
 - OpenJDK version 14.0.2
