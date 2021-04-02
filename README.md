@@ -37,8 +37,8 @@ folder to the server, or download files from the server to the shared folder.
 4) Next, for the easiest way to run the program use an IDE of your choice, 
    (this project was written in IntelliJ).
    
-5) Next in the IDE open the folder called **File-Sharing-Server**, and navigate 
-   to ./src/sample/
+5) Next in the IDE open the folder called **File-Sharing-Server** (or whatever the name equivalent is), 
+and navigate to ./src/sample/
    
 6) From here run the FileServer.java file by either opening it and hitting (when in IntelliJ) 
    **ctrl + shift + f10** or by right clicking the file and selecting **Run**
