@@ -12,6 +12,7 @@ import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Objects;
+import java.util.Scanner;
 
 public class Controller {
     @FXML
@@ -21,43 +22,38 @@ public class Controller {
     private ObservableList<String> serverList;
     private ObservableList<String> clientList;
 
-    private File clientDirectory = new File("./resources/client");
-    private File serverDirectory = new File("./resources/server");
-
-    public Controller(){}
-
+    private File clientDirectory = null;//new File("./resources/client");
+    private File serverDirectory = null;//new File("./resources/server");
+    private final String serverFolder = "./resources/server/";
+    private final String sharedFolder = Main.getFilePath();
     public void initialize(){
-//        FileServer fs = new FileServer();
-//        clientDirectory = new File("./resources/client");
-//        setServerDirectory(fs.getSharedFolder());
-//        if (serverDirectory == null) {
-//            System.out.println("server dir was null");
-//            serverDirectory = new File("./resources/server");
-//        }
+        clientDirectory = new File(Main.getFilePath());
+        serverDirectory = new File(serverFolder);
+
+        if (clientDirectory == null) {
+            System.out.println("shared dir was null");
+            clientDirectory = new File("./resources/client/");
+        }
         clientSide.setItems(FXCollections.observableArrayList(clientDirectory.list()));
         serverSide.setItems(FXCollections.observableArrayList(serverDirectory.list()));
     }
 
     public void uploadHandler(ActionEvent actionEvent) throws IOException {
         String fileName = (String) clientSide.getSelectionModel().getSelectedItem();
-        String fileDir = "./resources/client/";
-        String outFolder = "./resources/server/";
         String message = "Uploading from client to server";
 
-        File file = new File(fileDir + fileName);
-        fileTransfer(file, outFolder, message);
+        File file = new File(sharedFolder + fileName);
+        fileTransfer(file, serverFolder, message);
 
         refresh();
     }
 
     public void downloadHandler(ActionEvent actionEvent) {
         String fileName = (String) serverSide.getSelectionModel().getSelectedItem();
-        String fileDir = "./resources/server/";
-        String outFolder = "./resources/client/";
         String message = "Downloading from server to client";
 
-        File file = new File(fileDir + fileName);
-        fileTransfer(file, outFolder, message);
+        File file = new File(serverFolder + fileName);
+        fileTransfer(file, sharedFolder, message);
 
         refresh();
     }
@@ -65,12 +61,12 @@ public class Controller {
     public void uploadAllHandler(ActionEvent actionEvent) {
         // Setup file paths
         String message = "Uploading from client to server";
-        File folder = new File ("./resources/client/");
-        String outFolder = "./resources/server/";
+        File folder = new File (sharedFolder);
+
         // upload each file
         for (File file : Objects.requireNonNull(folder.listFiles())){
             if (!file.isDirectory()) {
-                fileTransfer(file, outFolder, message);
+                fileTransfer(file, serverFolder, message);
             }
         }
         refresh();
@@ -79,12 +75,12 @@ public class Controller {
     public void downloadAllHandler(ActionEvent actionEvent) {
         // Setup file paths
         String message = "Downloading from server to client";
-        File folder = new File("./resources/server/");
-        String outFolder = "./resources/client/";
+        File folder = new File(serverFolder);
+
         // download each file
         for (File file : Objects.requireNonNull(folder.listFiles())){
             if (!file.isDirectory()) {
-                fileTransfer(file, outFolder, message);
+                fileTransfer(file, sharedFolder, message);
             }
         }
         refresh();
